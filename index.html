@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文政 - 全端工程師 | LinkedIn</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Microsoft JhengHei', Arial, sans-serif;
+            line-height: 1.5;
+            color: rgba(0, 0, 0, 0.9);
+            background: #f3f2ef;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1128px;
+            margin: 0 auto;
+            padding: 24px 0;
+        }
+
+        /* LinkedIn Card Style */
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.08);
+            margin-bottom: 8px;
+            overflow: hidden;
+        }
+
+        /* Profile Header */
+        .profile-header {
+            position: relative;
+        }
+
+        .cover-photo {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #0077b5 0%, #00a0dc 100%);
+        }
+
+        .profile-info {
+            padding: 0 24px 24px 24px;
+            position: relative;
+        }
+
+        .profile-avatar {
+            width: 152px;
+            height: 152px;
+            border-radius: 50%;
+            background: #0077b5;
+            border: 4px solid white;
+            position: absolute;
+            top: -76px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: white;
+            font-weight: 600;
+            overflow: hidden;
+        }
+
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-content {
+            padding-top: 80px;
+        }
+
+        .profile-name {
+            font-size: 32px;
+            font-weight: 600;
+            color: rgba(0, 0, 0, 0.9);
+            margin-bottom: 4px;
+        }
+
+        .profile-headline {
+            font-size: 20px;
+            color: rgba(0, 0, 0, 0.9);
+            font-weight: 400;
+            margin-bottom: 12px;
+        }
+
+        .profile-details {
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.6);
+            margin-bottom: 8px;
+        }
+
+        .profile-details span {
+            margin-right: 8px;
+        }
+
+        .profile-stats {
+            display: flex;
+            gap: 24px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .stat-item {
+            font-size: 14px;
+        }
+
+        .stat-number {
+            font-weight: 600;
+            color: rgba(0, 0, 0, 0.9);
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 24px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: rgba(0, 0, 0, 0.9);
+            margin-bottom: 8px;
+        }
+
+        .about-content {
+            font-size: 14px;
+            line-height: 1.6;
+            color: rgba(0, 0, 0, 0.9);
+            white-space: pre-line;
+        }
+
+        /* Experience Section */
+        .experience-section {
+            padding: 24px;
+        }
+
+        .experience-item {
+            display: flex;
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .experience-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .experience-icon {
+            width: 48px;
+            height: 48px;
+            background: #f3f2ef;
+            border-radius: 4px;
+            margin-right: 12px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .experience-content {
+            flex: 1;
+        }
+
+        .experience-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: rgba(0, 0, 0, 0.9);
+            margin-bottom: 4px;
+        }
+
+        .experience-company {
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.6);
+            margin-bottom: 4px;
+        }
+
+        .experience-date {
+            font-size: 12px;
+            color: rgba(0, 0, 0, 0.6);
+            margin-bottom: 8px;
+        }
+
+        .experience-description {
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.9);
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .experience-description ul {
+            margin-left: 20px;
+            margin-top: 8px;
+        }
+
+        .experience-description li {
+            margin-bottom: 4px;
+        }
+
+        .experience-link {
+            display: inline-block;
+            color: #0073b1;
+            text-decoration: none;
+            font-size: 14px;
+            margin: 4px 0;
+        }
+
+        .experience-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Skills */
+        .skills-section {
+            padding: 24px;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .skill-tag {
+            background: rgba(0, 115, 177, 0.08);
+            color: #0073b1;
+            padding: 8px 12px;
+            border-radius: 16px;
+            font-size: 14px;
+            font-weight: 600;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .skill-tag:hover {
+            background: rgba(0, 115, 177, 0.12);
+            border-color: #0073b1;
+        }
+
+        /* Tech Stack */
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 8px;
+        }
+
+        .tech-badge {
+            background: white;
+            color: rgba(0, 0, 0, 0.6);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            font-weight: 500;
+        }
+
+        .divider {
+            height: 1px;
+            background: rgba(0, 0, 0, 0.08);
+            margin: 24px 0;
+        }
+
+        .special-note {
+            background: #fff4e6;
+            border-left: 3px solid #ff9500;
+            padding: 16px;
+            margin: 16px 0;
+            border-radius: 4px;
+        }
+
+        .special-note-title {
+            font-weight: 600;
+            color: #ff9500;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .special-note-content {
+            font-size: 14px;
+            line-height: 1.6;
+            color: rgba(0, 0, 0, 0.9);
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: #f3f2ef;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 12px 0;
+        }
+
+        .highlight-box strong {
+            color: rgba(0, 0, 0, 0.9);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        /* Responsive */
+        /* Certifications */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            margin-top: 16px;
+        }
+
+        .cert-item {
+            background: #f8f9fa;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cert-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .cert-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            background: white;
+        }
+
+        .cert-info {
+            padding: 16px;
+        }
+
+        .cert-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: rgba(0, 0, 0, 0.9);
+            margin-bottom: 4px;
+        }
+
+        .cert-issuer {
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.6);
+            margin-bottom: 8px;
+        }
+
+        .cert-date {
+            font-size: 12px;
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0;
+            }
+
+            .card {
+                border-radius: 0;
+                margin-bottom: 8px;
+            }
+
+            .profile-info {
+                padding: 0 16px 16px 16px;
+            }
+
+            .about-section,
+            .experience-section,
+            .skills-section {
+                padding: 16px;
+            }
+
+            .profile-name {
+                font-size: 24px;
+            }
+
+            .profile-headline {
+                font-size: 16px;
+            }
+
+            .cert-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* LinkedIn Top Bar */
+        .linkedin-nav {
+            background: white;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            padding: 0;
+            margin-bottom: 24px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-content {
+            max-width: 1128px;
+            margin: 0 auto;
+            padding: 8px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .linkedin-logo {
+            font-size: 32px;
+            color: #0077b5;
+            font-weight: 700;
+        }
+
+        .nav-title {
+            font-size: 16px;
+            color: rgba(0, 0, 0, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <!-- LinkedIn Navigation -->
+    <div class="linkedin-nav">
+        <div class="nav-content">
+            <div class="linkedin-logo">in</div>
+            <div class="nav-title">履歷檔案</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Profile Header Card -->
+        <div class="card profile-header">
+            <div class="cover-photo"></div>
+            <div class="profile-info">
+                <div class="profile-avatar">
+                    <img src="image/01.jpg" alt="文政">
+                </div>
+                <div class="profile-content">
+                    <h1 class="profile-name">邱文政</h1>
+                    <div class="profile-headline">DevOps 工程師 / 全端工程師 at 戴數科技</div>
+                    <div class="profile-details">
+                        <span>🏆 Oracle 認證（Database Services & DevOps Professional）</span>
+                    </div>
+                    <div class="profile-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">18+</span>
+                            <span class="stat-label">年軟體開發經驗</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">8</span>
+                            <span class="stat-label">年博弈產業經驗</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">3</span>
+                            <span class="stat-label">年管理經驗</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Card -->
+        <div class="card">
+            <div class="about-section">
+                <h2 class="section-title">關於</h2>
+                <div class="about-content">大學就讀中山醫學大學醫務管理學系，自接下系上的網站，開始了不務正業的程式人生。
+
+目前任職於戴數科技擔任 SRE 工程師 / 後端工程師（2021年 - 至今），負責 GCP 雲端架構、CI/CD 自動化、系統監控與全端開發。偶爾協助 Azure、AWS 設定。不敢說是資深工程師，但可用 18 年的開發經驗，解決客戶的林林總總。
+
+擅長 .NET 生態系統開發與 GCP 雲端架構，具備政府標案、企業系統、博弈產業、IoT 應用等跨領域經驗。熟悉雲端架構（GCP、AWS、Azure）、CI/CD Pipeline、Kubernetes（GKE）、Bot 開發（Line Bot、Telegram Bot）、即時通訊（SignalR、MQTT）以及機器學習應用。
+
+持有 Oracle Cloud Infrastructure 2025 Certified DevOps Professional 與 Oracle Cloud Database Services 2025 Certified Professional 認證。
+
+近期使用 n8n 建立 line bot 個人助理，可以進行簽到、請假、簽核、排程、行事曆、行事通知、拍食物照後記錄食物熱量、拍下發票後記錄發票金額/日期/店家至Google Sheet等功能。</div>
+            </div>
+        </div>
+
+        <!-- Special Requirements Card -->
+        <div class="card">
+            <div class="about-section">
+                <h2 class="section-title">工作期望</h2>
+                <div class="special-note">
+                    <div class="special-note-title">⚠️ 特殊需求</div>
+                    <div class="special-note-content">
+                        <strong>遠端工作需求：</strong><br>
+                        我媽近期手術開完刀，需要有人照顧，所以希望可以遠端工作，一週可以進公司一天至兩天。<br><br>
+                        <strong>工作態度：</strong><br>
+                        如遇颱風假我可以配合公司同事正常工作，不會硬拗放假。事情屬於我應該做的我會在要求時間內完成，不要額外要求加班費。因為公司的慷慨，我對公司同樣慷慨回報，全力以赴。<br><br>
+                        <strong>企業文化：</strong><br>
+                        公司尾牙如果需要員工排演、表演給客戶看，或是充當服務人員，我會直接拒絕這份工作。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Experience Card -->
+        <div class="card">
+            <div class="experience-section">
+                <h2 class="section-title">經歷</h2>
+
+                <div class="experience-item">
+                    <div class="experience-icon">🏢</div>
+                    <div class="experience-content">
+                        <div class="experience-title">SRE 工程師 / 後端工程師</div>
+                        <div class="experience-company">戴數科技</div>
+                        <div class="experience-date">2021年 - 至今 · 4年+</div>
+                        
+                        <div class="experience-description">
+                            <strong>🔹 GCP DevOps 架構建置與優化（2023年 - 至今）</strong><br><br>
+                            
+                            <strong>CI/CD 自動化：</strong><br>
+                            • 將產品架構轉型，導入 DevOps Flow、Git 版本控制、自動化部署、自動測試<br>
+                            • 自定義 Pipeline、MR（Merge Request）流程<br>
+                            • 代碼過版檔案掃描檢查<br>
+                            • 依不同開發代碼(dotnet, java, node.js, Vue.js, React.js)定義 CI<br>
+                            • 依需求佈建 GKE（Google Kubernetes Engine）、Cloud Run CD<br>
+                            • 資源調度與配置最佳化<br>
+                            • 每月提供 資源/費用 使用報告，進行資源調整<br><br>
+
+                            <strong>系統監控與管理：</strong><br>
+                            • 架設 Gitlab（儲存安裝服務、過版資訊、自定義監控相關）<br>
+                            • GCP Log Monitoring （Linux、Windows Server）<br>
+                            • 自定義 GCP Dashboard （CPU、Memory、機器資訊）<br>
+                            • 架設 Docker Registry，儲存必要的 Docker images<br>
+                            • 設計並維持高可用、高擴展性的雲端架構<br>
+                            • 自動異常監聽，並依規則發送通知<br><br>
+                            
+                            <strong>🔹 Line 遊戲投注、後台報表（2022年）使用 .net core / Python / MS SQL</strong><br>
+                            • 開發 Line 遊戲投注系統及後台報表功能<br>
+                            • 使用 Python 爬取開獎資料進行數據整合<br>
+                            • 使用排程 自動完成中獎通知<br>
+                            • 整合第三方金流 API 與 Google Authenticator 雙因素驗證<br>
+                            • 2C2P Apple Pay、PayPay、一般信用卡金流串接<br><br>
+                            <!-- <a href="http://52.197.196.28/2022.html" class="experience-link" target="_blank">查看專案 →</a><br><br> -->
+                            
+                            <strong>🔹 Telegram 簽到、請假系統 & 簽核系統（2021年）使用 .net core / MYSQL</strong><br>
+                            • 開發 Telegram 簽到、請假與簽核系統<br>
+                            • 實作 SSO 串接 EIP 核實登入功能<br>
+                            • 接入 Cloudflare WAF 防護、edge routing、CDN<br>
+                            • 由原本單一VM架構 轉到 GKE<br>
+                            • 建立過程使用 Terraform管理 GCP 資源<br>
+                            • 引用 SonarQube ，進行代碼掃描與分析<br><br>
+                            <!-- <a href="http://52.197.196.28/2021.html" class="experience-link" target="_blank">查看專案 →</a><br><br>-->
+                            
+                            <strong>🔹 影像辨識後自動下單外掛（2021年）使用 Python / Qt5</strong><br>
+                            • 使用機器學習技術進行影像辨識<br>
+                            • 開發自動化下單外掛程式<br><br>
+                            <!-- <a href="http://52.197.196.28/image/2021/04.jpg" class="experience-link" target="_blank">查看截圖 →</a>-->
+                        </div>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-badge">GCP</span>
+                            <span class="tech-badge">GitLab</span>
+                            <span class="tech-badge">GKE</span>
+                            <span class="tech-badge">Cloud Run</span>
+                            <span class="tech-badge">Docker</span>
+                            <span class="tech-badge">CI/CD</span>
+                            <span class="tech-badge">AWS</span>
+                            <span class="tech-badge">ASP.NET MVC</span>
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">Line Bot</span>
+                            <span class="tech-badge">Telegram Bot</span>
+                            <span class="tech-badge">Machine Learning</span>
+                            <span class="tech-badge">MYSQL</span>
+                            <span class="tech-badge">MS SQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-icon">🏢</div>
+                    <div class="experience-content">
+                        <div class="experience-title">鼎新 上海澳盛</div>
+                        <div class="experience-company">全端工程師</div>
+                        <div class="experience-date">2020年</div>
+                        <div class="tech-stack">
+                            <span class="tech-badge">AngularJS</span>
+                            <span class="tech-badge">.NET</span>
+                            <span class="tech-badge">MS SQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-icon">📱</div>
+                    <div class="experience-content">
+                        <div class="experience-title">研華 電子白板 (IoT應用)</div>
+                        <div class="experience-company">全端工程師</div>
+                        <div class="experience-date">2018年 - 2020年</div>
+                        <div class="experience-description">
+                            • 開發 IoT 電子白板應用系統<br>
+                            • 實作即時通訊功能（SignalR）與 MQTT 協議整合
+                        </div>
+                        <div class="tech-stack">
+                            <span class="tech-badge">.NET Core</span>
+                            <span class="tech-badge">SignalR</span>
+                            <span class="tech-badge">MQTT</span>
+                            <span class="tech-badge">WinForm</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-icon">👨‍💼</div>
+                    <div class="experience-content">
+                        <div class="experience-title">專案經理</div>
+                        <div class="experience-company">新陽電腦</div>
+                        <div class="experience-date">2012年 - 2018年 · 6 年</div>
+                        <div class="highlight-box">
+                            <strong>職責範圍</strong>
+                            負責專案全生命週期管理：公告、投標、專案啟動、審查驗收、需求訪談、系統分析、排定專案成員達成階段目標、教育訓練至專案驗收。期間也協助實踐大學教務與 IBM 的系統程式開發。
+                        </div>
+                        <div class="experience-description">
+                            <strong>主要承接政府與企業專案：</strong><br>
+                            • 醫療院所預防保健服務系統單一入口<br>
+                            • 衛生福利部國民健康署官網<br>
+                            • 臺灣急救教育推廣與諮詢中心<br>
+                            • 華航航務訓練管理資訊系統（IPTS）<br>
+                            • 衛生福利部國民健康署新聞專區維護計畫<br>
+                            • 健康體重管理資訊網功能擴充及維護
+                        </div>
+                        <a href="https://www.hpa.gov.tw/" class="experience-link" target="_blank">查看國健署官網 →</a>
+                        <a href="http://www.cpr.org.tw" class="experience-link" target="_blank">查看急救中心網站 →</a>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-icon">🎮</div>
+                    <div class="experience-content">
+                        <div class="experience-title">遊戲官網開發工程師</div>
+                        <div class="experience-company">向上遊戲（XSG）</div>
+                        <div class="experience-date">2011年</div>
+                        <div class="experience-description">
+                            負責向上遊戲官網、老子有錢官網開發
+                        </div>
+                        <a href="https://www.xsgames.com/" class="experience-link" target="_blank">查看官網 →</a>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-icon">🎮</div>
+                    <div class="experience-content">
+                        <div class="experience-title">軟體工程師</div>
+                        <div class="experience-company">天下遊戲（目前的九州）</div>
+                        <div class="experience-date">2007年 - 2010年 · 3 年</div>
+                        <div class="experience-description">
+                            曾配合需要至大陸東北瀋陽任職
+                        </div>
+                        <a href="https://www.ts775.com.tw/" class="experience-link" target="_blank">查看官網 →</a>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-icon">🍺</div>
+                    <div class="experience-content">
+                        <div class="experience-title">網站開發工程師</div>
+                        <div class="experience-company">Pub 網站專案</div>
+                        <div class="experience-date">2006年 - 2007年 · 1 年</div>
+                        <div class="experience-description">
+                            獅子王pub、曼波king pub、阿曼king pub 等網站開發
+                        </div>
+                        <a href="http://www.amanking.com.tw/" class="experience-link" target="_blank">查看網站 →</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Skills Card -->
+        <div class="card">
+            <div class="skills-section">
+                <h2 class="section-title">技能</h2>
+                <div class="skills-list">
+                    <span class="skill-tag">GCP (Google Cloud Platform)</span>
+                    <span class="skill-tag">Google Kubernetes Engine (GKE)</span>
+                    <span class="skill-tag">Cloud Run</span>
+                    <span class="skill-tag">GitLab CI/CD</span>
+                    <span class="skill-tag">Docker Registry</span>
+                    <span class="skill-tag">Pipeline 設計</span>
+                    <span class="skill-tag">DevOps</span>
+                    <span class="skill-tag">Oracle Cloud Infrastructure</span>
+                    <span class="skill-tag">Oracle Database Services</span>
+                    <span class="skill-tag">Kubernetes</span>
+                    <span class="skill-tag">容器化部署</span>
+                    <span class="skill-tag">系統監控</span>
+                    <span class="skill-tag">資源調度最佳化</span>
+                    <span class="skill-tag">ASP.NET MVC</span>
+                    <span class="skill-tag">.NET Core</span>
+                    <span class="skill-tag">C#</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">MS SQL</span>
+                    <span class="skill-tag">AWS</span>
+                    <span class="skill-tag">Azure</span>
+                    <span class="skill-tag">HTML5</span>
+                    <span class="skill-tag">jQuery</span>
+                    <span class="skill-tag">AngularJS</span>
+                    <span class="skill-tag">Bootstrap</span>
+                    <span class="skill-tag">Line Bot</span>
+                    <span class="skill-tag">Telegram Bot</span>
+                    <span class="skill-tag">SignalR</span>
+                    <span class="skill-tag">MQTT</span>
+                    <span class="skill-tag">Machine Learning</span>
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">API 整合</span>
+                    <span class="skill-tag">SSO</span>
+                    <span class="skill-tag">WinForm</span>
+                    <span class="skill-tag">專案管理</span>
+                    <span class="skill-tag">需求分析</span>
+                    <span class="skill-tag">政府標案</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Certifications Card -->
+        <div class="card">
+            <div class="skills-section">
+                <h2 class="section-title">證照與認證</h2>
+                <div class="cert-grid">
+                    <div class="cert-item">
+                        <img src="image/Database Services 2025 Certified Professional.jpg" alt="Oracle Database Services 2025 Certified Professional" class="cert-image">
+                        <div class="cert-info">
+                            <div class="cert-name">Oracle Cloud Database Services 2025 Certified Professional</div>
+                            <div class="cert-issuer">Oracle University</div>
+                            <div class="cert-date">發證日期：2025年10月25日</div>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <img src="image/DevOps Professional.jpg" alt="Oracle Cloud Infrastructure 2025 Certified DevOps Professional" class="cert-image">
+                        <div class="cert-info">
+                            <div class="cert-name">Oracle Cloud Infrastructure 2025 Certified DevOps Professional</div>
+                            <div class="cert-issuer">Oracle University</div>
+                            <div class="cert-date">發證日期：2025年10月22日</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Industry Experience Card -->
+        <div class="card">
+            <div class="skills-section">
+                <h2 class="section-title">產業經驗</h2>
+                <div class="experience-description">
+                    <strong>🏥 醫療產業</strong><br>
+                    衛福部、國健署專案 • 醫療院所系統 • 牙醫診所網站
+                </div>
+                <div class="divider"></div>
+                <div class="experience-description">
+                    <strong>🏢 企業系統</strong><br>
+                    華航 IPTS 系統 • 實踐大學教務系統 • IBM 系統開發 • 鼎新 ERP 相關
+                </div>
+                <div class="divider"></div>
+                <div class="experience-description">
+                    <strong>🎮 博弈產業</strong><br>
+                    向上遊戲 • 天下遊戲（九州）• Line 遊戲投注系統
+                </div>
+                <div class="divider"></div>
+                <div class="experience-description">
+                    <strong>📱 IoT 應用</strong><br>
+                    研華電子白板 • 即時通訊整合 • MQTT 協議應用
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
